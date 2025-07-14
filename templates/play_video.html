@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}播放视频 - {{ video.title or '无标题' }}{% endblock %}
+
+{% block content %}
+<h2>{{ video.title or '无标题' }}</h2>
+<p>作者：<a href="{{ url_for('user_videos', username=video.username) }}">{{ video.username }}</a></p>
+
+<div class="ratio ratio-16x9 mb-3">
+  <video controls preload="auto" src="{{ url_for('static', filename='videos/' ~ video.filename) }}"></video>
+</div>
+
+<a href="{{ url_for('user_videos', username=video.username) }}" class="btn btn-secondary">返回用户主页</a>
+{% endblock %}
