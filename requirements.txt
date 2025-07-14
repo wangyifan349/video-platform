@@ -1,0 +1,25 @@
+# requirements.txt - 项目依赖库版本清单，使用 >= 号保证安装指定版本及以上
+
+Flask >= 2.0.0          # Flask核心框架，用于搭建Web应用
+Werkzeug >= 2.0.0       # Flask依赖库，提供WSGI工具和服务器支持
+Jinja2 >= 3.0.0         # Flask模板引擎，渲染HTML页面
+itsdangerous >= 2.0.0   # Flask安全相关库，用于生成安全的签名
+click >= 8.0            # Flask命令行工具支持库
+
+# 数据库相关（如果使用SQLite则自带，无需额外安装）
+Flask-SQLAlchemy >= 2.5.0    # Flask数据库ORM（根据项目需求决定是否需要）
+
+# 表单处理（如果使用Flask-WTF或者WTForms）
+Flask-WTF >= 1.0.0       # Flask表单集成，处理用户输入和CSRF安全
+
+# 文件上传相关（Flask自带支持）
+# Werkzeug中包含上传文件相关类，无需另行安装
+
+# 其他可选依赖
+python-dotenv >= 0.19.0  # 用于加载环境变量，方便开发和部署
+
+# 用于处理视频文件，如果有需要的话（可选）
+moviepy >= 1.0.3        # 视频编辑处理库
+
+# 建议加上依赖管理工具版本说明（pip版本）
+pip >= 21.0
