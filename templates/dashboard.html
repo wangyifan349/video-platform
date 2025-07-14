@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}管理面板 - 视频平台{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">管理面板</h2>
+
+<!-- 上传视频表单 -->
+<div class="mb-5">
+  <h4>上传新视频</h4>
+  <form method="post" action="{{ url_for('upload') }}" enctype="multipart/form-data" class="d-flex align-items-center gap-3">
+    <input type="text" name="title" class="form-control" placeholder="视频标题（可选）">
+    <input type="file" name="file" accept="video/*" required>
+    <button type="submit" class="btn btn-success">上传</button>
+  </form>
+</div>
+
+<!-- 视频列表 -->
+<h4>我的视频</h4>
+{% if videos %}
+<table class="table table-striped align-middle">
+  <thead>
+    <tr>
+      <th>标题</th>
+      <th>文件名</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for video in videos %}
+    <tr>
+      <td>{{ video['title'] or '无标题' }}</td>
+      <td>{{ video['filename'] }}</td>
+      <td>
+        <a href="{{ url_for('play_video', video_id=video['id']) }}" target="_blank" class="btn btn-primary btn-sm">播放</a>
+        <form method="post" action="{{ url_for('delete_video', video_id=video['id']) }}" style="display:inline;" onsubmit="return confirm('确认删除该视频吗？');">
+          <button type="submit" class="btn btn-danger btn-sm">删除</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>您还没有上传任何视频。</p>
+{% endif %}
+{% endblock %}
