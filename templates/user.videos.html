@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.username }} 的视频 - 视频平台{% endblock %}
+
+{% block content %}
+<h2>{{ user.username }} 的视频</h2>
+{% if videos %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for video in videos %}
+  <div class="col">
+    <div class="card h-100">
+      <video class="card-img-top video-thumb" controls preload="metadata" src="{{ url_for('static', filename='videos/' ~ video['filename']) }}"></video>
+      <div class="card-body">
+        <h5 class="card-title">{{ video['title'] or '无标题' }}</h5>
+        <a href="{{ url_for('play_video', video_id=video['id']) }}" class="btn btn-primary btn-sm">观看详情</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>该用户尚未上传任何视频。</p>
+{% endif %}
+{% endblock %}
