@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}搜索结果 - 视频平台{% endblock %}
+
+{% block content %}
+<h2>搜索用户: "{{ keyword }}"</h2>
+
+{% if users %}
+<ul class="list-group">
+  {% for user in users %}
+  <li class="list-group-item">
+    <a href="{{ url_for('user_videos', username=user.username) }}">{{ user.username }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>没有找到匹配的用户。</p>
+{% endif %}
+{% endblock %}
